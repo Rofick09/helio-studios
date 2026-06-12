@@ -235,24 +235,27 @@ type BookingValues = z.infer<typeof bookingSchema>;
 
 function Page() {
   return (
-    <div className="min-h-dvh bg-background text-foreground antialiased">
-      <Header />
-      <main id="main">
-        <Hero />
-        <Pillars />
-        <Method />
-        <Pricing />
-        <Testimonials />
-        <Faq />
-        <ContactCta />
-      </main>
-      <Footer />
+    <div className="relative min-h-dvh bg-background text-foreground antialiased overflow-x-hidden">
+      <div className="ambient-blobs" aria-hidden="true" />
+      <div className="relative z-10">
+        <Header />
+        <main id="main">
+          <Hero />
+          <Pillars />
+          <Method />
+          <Pricing />
+          <Testimonials />
+          <Faq />
+          <ContactCta />
+        </main>
+        <Footer />
+      </div>
       <Toaster
         position="top-center"
         toastOptions={{
           classNames: {
             toast:
-              "!bg-popover !text-foreground !border !border-border !rounded-xl !shadow-soft",
+              "!glass !text-foreground !rounded-2xl",
           },
         }}
       />
@@ -281,61 +284,61 @@ function Header() {
   }, [open]);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "backdrop-blur-md bg-background/80 border-b border-border/70"
-          : "bg-transparent",
-      )}
-    >
-      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20">
-        <a href="#top" aria-label="Studio Hélio — accueil" className="flex items-center gap-2">
-          <span className="text-display text-xl md:text-2xl font-medium tracking-tight">
-            Studio<span className="text-terracotta">·</span>Hélio
-          </span>
-        </a>
-
-        <nav aria-label="Navigation principale" className="hidden md:flex items-center gap-8">
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm text-ink-soft hover:text-foreground transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="hidden md:block">
-          <Button asChild size="sm" className="rounded-full px-5">
-            <a href="#contact">Cours d'essai gratuit</a>
-          </Button>
-        </div>
-
-        <button
-          type="button"
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((v) => !v)}
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/60"
+    <header className="sticky top-3 md:top-5 z-50">
+      <div className="container-page">
+        <div
+          className={cn(
+            "glass-strong flex h-14 md:h-16 items-center justify-between gap-4 rounded-full px-3 pl-5 md:pl-6 md:pr-3 transition-all duration-300",
+            scrolled ? "shadow-card" : "",
+          )}
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+          <a href="#top" aria-label="Studio Hélio — accueil" className="flex items-center gap-2">
+            <span className="text-display text-lg md:text-xl font-medium tracking-tight">
+              Studio<span className="text-terracotta">·</span>Hélio
+            </span>
+          </a>
+
+          <nav aria-label="Navigation principale" className="hidden md:flex items-center gap-7">
+            {NAV.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm text-ink-soft hover:text-foreground transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="hidden md:block">
+            <Button asChild size="sm" className="rounded-full px-5 h-10">
+              <a href="#contact">Cours d'essai gratuit</a>
+            </Button>
+          </div>
+
+          <button
+            type="button"
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((v) => !v)}
+            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full glass"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
       <div
         id="mobile-menu"
         className={cn(
-          "md:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-background border-t border-border transition-[opacity,transform] duration-300",
+          "md:hidden fixed inset-x-3 top-20 z-40 glass-strong rounded-3xl transition-[opacity,transform] duration-300",
           open ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-2",
         )}
         aria-hidden={!open}
       >
-        <nav aria-label="Navigation mobile" className="container-page flex flex-col gap-2 py-8">
+        <nav aria-label="Navigation mobile" className="flex flex-col gap-1 p-6">
           {NAV.map((item) => (
             <a
               key={item.href}
@@ -364,7 +367,7 @@ function Hero() {
     <section id="top" className="relative overflow-hidden">
       <div className="container-page grid lg:grid-cols-12 gap-10 lg:gap-12 pt-10 pb-16 md:pt-16 md:pb-24">
         <div className="lg:col-span-6 flex flex-col justify-center">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1 text-xs text-ink-soft">
+          <span className="inline-flex w-fit items-center gap-2 rounded-full glass px-3 py-1.5 text-xs text-ink-soft">
             <span className="h-1.5 w-1.5 rounded-full bg-terracotta" />
             Pilates & mobilité — Bordeaux
           </span>
@@ -424,7 +427,7 @@ function Hero() {
             />
           </div>
 
-          <div className="hidden md:flex absolute -left-6 bottom-6 lg:-left-10 items-center gap-3 rounded-2xl bg-background/90 backdrop-blur px-4 py-3 border border-border shadow-soft max-w-[260px]">
+          <div className="hidden md:flex absolute -left-6 bottom-6 lg:-left-10 items-center gap-3 rounded-2xl glass-strong px-4 py-3 max-w-[260px]">
             <div className="flex -space-x-2">
               {[t1, t2, t3].map((src, i) => (
                 <img
@@ -460,7 +463,7 @@ function Pillars() {
           {PILLARS.map((p) => (
             <article
               key={p.title}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-background/40 p-8 transition-colors hover:bg-background/80"
+              className="group relative overflow-hidden rounded-3xl glass p-8 transition-transform hover:-translate-y-1"
             >
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-terracotta/10 text-terracotta">
                 <p.icon className="h-5 w-5" />
@@ -548,10 +551,10 @@ function Pricing() {
             <article
               key={plan.name}
               className={cn(
-                "relative flex flex-col rounded-3xl border p-8 transition-transform",
+                "relative flex flex-col rounded-3xl p-8 transition-transform",
                 plan.featured
-                  ? "bg-foreground text-background border-foreground shadow-card md:-translate-y-4"
-                  : "bg-background/40 border-border",
+                  ? "bg-foreground text-background border border-foreground shadow-card md:-translate-y-4"
+                  : "glass",
               )}
             >
               {plan.featured && (
@@ -631,7 +634,7 @@ function Testimonials() {
           {TESTIMONIALS.map((t) => (
             <figure
               key={t.name}
-              className="flex flex-col rounded-3xl bg-background p-8 border border-border shadow-soft"
+              className="flex flex-col rounded-3xl glass p-8"
             >
               <blockquote className="text-display text-xl md:text-[1.35rem] leading-snug flex-1">
                 « {t.quote} »
