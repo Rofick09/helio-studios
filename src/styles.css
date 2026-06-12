@@ -149,3 +149,66 @@
     transparent
   );
 }
+
+/* ─────────── iOS 26 "Liquid Glass" utilities ─────────── */
+
+@utility glass {
+  background: color-mix(in oklab, white 45%, transparent);
+  backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid color-mix(in oklab, white 70%, transparent);
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, white 80%, transparent) inset,
+    0 -1px 0 0 color-mix(in oklab, var(--ink) 6%, transparent) inset,
+    0 24px 48px -24px color-mix(in oklab, var(--ink) 22%, transparent);
+}
+
+@utility glass-strong {
+  background: color-mix(in oklab, white 62%, transparent);
+  backdrop-filter: blur(36px) saturate(180%);
+  border: 1px solid color-mix(in oklab, white 80%, transparent);
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, white 90%, transparent) inset,
+    0 -1px 0 0 color-mix(in oklab, var(--ink) 8%, transparent) inset,
+    0 8px 40px -12px color-mix(in oklab, var(--ink) 18%, transparent);
+}
+
+@utility glass-dark {
+  background: color-mix(in oklab, white 10%, transparent);
+  backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid color-mix(in oklab, white 16%, transparent);
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, white 20%, transparent) inset,
+    0 24px 48px -24px rgb(0 0 0 / 0.4);
+}
+
+/* Ambient warm blobs to give the glass something to refract */
+@utility ambient-blobs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(120px);
+  }
+  &::before {
+    width: 42vw;
+    height: 42vw;
+    top: -10vw;
+    left: -8vw;
+    background: oklch(0.78 0.13 50);
+    opacity: 0.55;
+  }
+  &::after {
+    width: 48vw;
+    height: 48vw;
+    bottom: -12vw;
+    right: -12vw;
+    background: oklch(0.84 0.08 80);
+    opacity: 0.5;
+  }
+}
