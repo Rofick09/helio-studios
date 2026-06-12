@@ -338,7 +338,7 @@ function Header() {
         )}
         aria-hidden={!open}
       >
-        <nav aria-label="Navigation mobile" className="container-page flex flex-col gap-2 py-8">
+        <nav aria-label="Navigation mobile" className="flex flex-col gap-1 p-6">
           {NAV.map((item) => (
             <a
               key={item.href}
