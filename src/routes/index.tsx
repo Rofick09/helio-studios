@@ -333,7 +333,7 @@ function Header() {
       <div
         id="mobile-menu"
         className={cn(
-          "md:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-background border-t border-border transition-[opacity,transform] duration-300",
+          "md:hidden fixed inset-x-3 top-20 z-40 glass-strong rounded-3xl transition-[opacity,transform] duration-300",
           open ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-2",
         )}
         aria-hidden={!open}
