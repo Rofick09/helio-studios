@@ -367,7 +367,7 @@ function Hero() {
     <section id="top" className="relative overflow-hidden">
       <div className="container-page grid lg:grid-cols-12 gap-10 lg:gap-12 pt-10 pb-16 md:pt-16 md:pb-24">
         <div className="lg:col-span-6 flex flex-col justify-center">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1 text-xs text-ink-soft">
+          <span className="inline-flex w-fit items-center gap-2 rounded-full glass px-3 py-1.5 text-xs text-ink-soft">
             <span className="h-1.5 w-1.5 rounded-full bg-terracotta" />
             Pilates & mobilité — Bordeaux
           </span>
