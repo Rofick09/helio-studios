@@ -235,24 +235,27 @@ type BookingValues = z.infer<typeof bookingSchema>;
 
 function Page() {
   return (
-    <div className="min-h-dvh bg-background text-foreground antialiased">
-      <Header />
-      <main id="main">
-        <Hero />
-        <Pillars />
-        <Method />
-        <Pricing />
-        <Testimonials />
-        <Faq />
-        <ContactCta />
-      </main>
-      <Footer />
+    <div className="relative min-h-dvh bg-background text-foreground antialiased overflow-x-hidden">
+      <div className="ambient-blobs" aria-hidden="true" />
+      <div className="relative z-10">
+        <Header />
+        <main id="main">
+          <Hero />
+          <Pillars />
+          <Method />
+          <Pricing />
+          <Testimonials />
+          <Faq />
+          <ContactCta />
+        </main>
+        <Footer />
+      </div>
       <Toaster
         position="top-center"
         toastOptions={{
           classNames: {
             toast:
-              "!bg-popover !text-foreground !border !border-border !rounded-xl !shadow-soft",
+              "!glass !text-foreground !rounded-2xl",
           },
         }}
       />
