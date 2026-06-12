@@ -427,7 +427,7 @@ function Hero() {
             />
           </div>
 
-          <div className="hidden md:flex absolute -left-6 bottom-6 lg:-left-10 items-center gap-3 rounded-2xl bg-background/90 backdrop-blur px-4 py-3 border border-border shadow-soft max-w-[260px]">
+          <div className="hidden md:flex absolute -left-6 bottom-6 lg:-left-10 items-center gap-3 rounded-2xl glass-strong px-4 py-3 max-w-[260px]">
             <div className="flex -space-x-2">
               {[t1, t2, t3].map((src, i) => (
                 <img
