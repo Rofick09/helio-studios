@@ -284,49 +284,49 @@ function Header() {
   }, [open]);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "backdrop-blur-md bg-background/80 border-b border-border/70"
-          : "bg-transparent",
-      )}
-    >
-      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20">
-        <a href="#top" aria-label="Studio Hélio — accueil" className="flex items-center gap-2">
-          <span className="text-display text-xl md:text-2xl font-medium tracking-tight">
-            Studio<span className="text-terracotta">·</span>Hélio
-          </span>
-        </a>
-
-        <nav aria-label="Navigation principale" className="hidden md:flex items-center gap-8">
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm text-ink-soft hover:text-foreground transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="hidden md:block">
-          <Button asChild size="sm" className="rounded-full px-5">
-            <a href="#contact">Cours d'essai gratuit</a>
-          </Button>
-        </div>
-
-        <button
-          type="button"
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((v) => !v)}
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background/60"
+    <header className="sticky top-3 md:top-5 z-50">
+      <div className="container-page">
+        <div
+          className={cn(
+            "glass-strong flex h-14 md:h-16 items-center justify-between gap-4 rounded-full px-3 pl-5 md:pl-6 md:pr-3 transition-all duration-300",
+            scrolled ? "shadow-card" : "",
+          )}
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+          <a href="#top" aria-label="Studio Hélio — accueil" className="flex items-center gap-2">
+            <span className="text-display text-lg md:text-xl font-medium tracking-tight">
+              Studio<span className="text-terracotta">·</span>Hélio
+            </span>
+          </a>
+
+          <nav aria-label="Navigation principale" className="hidden md:flex items-center gap-7">
+            {NAV.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm text-ink-soft hover:text-foreground transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="hidden md:block">
+            <Button asChild size="sm" className="rounded-full px-5 h-10">
+              <a href="#contact">Cours d'essai gratuit</a>
+            </Button>
+          </div>
+
+          <button
+            type="button"
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((v) => !v)}
+            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full glass"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
