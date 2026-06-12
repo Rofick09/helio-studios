@@ -463,7 +463,7 @@ function Pillars() {
           {PILLARS.map((p) => (
             <article
               key={p.title}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-background/40 p-8 transition-colors hover:bg-background/80"
+              className="group relative overflow-hidden rounded-3xl glass p-8 transition-transform hover:-translate-y-1"
             >
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-terracotta/10 text-terracotta">
                 <p.icon className="h-5 w-5" />
