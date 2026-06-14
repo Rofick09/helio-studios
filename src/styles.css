@@ -194,6 +194,7 @@
     position: absolute;
     border-radius: 9999px;
     filter: blur(120px);
+    animation: blob-drift 22s ease-in-out infinite alternate;
   }
   &::before {
     width: 42vw;
