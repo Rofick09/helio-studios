@@ -84,6 +84,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: "/og-image.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "/og-image.jpg" },
+      { title: "Lovable App" },
+      { property: "og:title", content: "Lovable App" },
+      { name: "twitter:title", content: "Lovable App" },
+      { name: "description", content: "Helio Studio Landing is a responsive website designed to convert visitors into clients for a Pilates and mobility studio." },
+      { property: "og:description", content: "Helio Studio Landing is a responsive website designed to convert visitors into clients for a Pilates and mobility studio." },
+      { name: "twitter:description", content: "Helio Studio Landing is a responsive website designed to convert visitors into clients for a Pilates and mobility studio." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
