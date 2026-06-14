@@ -806,7 +806,7 @@ function Testimonials() {
           {TESTIMONIALS.map((t) => (
             <figure
               key={t.name}
-              className="flex flex-col rounded-3xl glass p-8"
+              className="flex flex-col rounded-3xl glass-dark hover-lift p-8 text-cream"
             >
               <blockquote className="text-display text-xl md:text-[1.35rem] leading-snug flex-1">
                 « {t.quote} »
