@@ -723,10 +723,10 @@ function Pricing() {
             <article
               key={plan.name}
               className={cn(
-                "relative flex flex-col rounded-3xl p-8 transition-transform",
+                "relative flex flex-col rounded-3xl p-8 hover-lift",
                 plan.featured
                   ? "bg-foreground text-background border border-foreground shadow-card md:-translate-y-4"
-                  : "glass",
+                  : "glass glass-sheen",
               )}
             >
               {plan.featured && (
