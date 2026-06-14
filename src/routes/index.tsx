@@ -798,7 +798,7 @@ function Pricing() {
 
 function Testimonials() {
   return (
-    <section id="avis" className="py-20 md:py-28 bg-cream-deep/60">
+    <section id="avis" className="py-20 md:py-28 bg-foreground text-cream relative overflow-hidden">
       <div className="container-page">
         <SectionTitle eyebrow="Ils nous font confiance" title="Des résultats, pas des promesses." />
 
