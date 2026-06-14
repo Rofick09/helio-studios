@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import pilates1 from "@/assets/pilates-1.jpg";
+import pilates2 from "@/assets/pilates-2.jpg";
+import pilates3 from "@/assets/pilates-3.jpg";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
