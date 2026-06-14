@@ -822,7 +822,7 @@ function Testimonials() {
                 />
                 <div className="text-sm">
                   <div className="font-medium">{t.name}</div>
-                  <div className="text-ink-soft text-xs">{t.role}</div>
+                  <div className="text-cream/60 text-xs">{t.role}</div>
                 </div>
               </figcaption>
             </figure>
