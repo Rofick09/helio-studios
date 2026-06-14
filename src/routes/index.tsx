@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import pilates1 from "@/assets/pilates-1.jpg";
+import pilates2 from "@/assets/pilates-2.jpg";
+import pilates3 from "@/assets/pilates-3.jpg";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -241,8 +244,11 @@ function Page() {
         <Header />
         <main id="main">
           <Hero />
+          <LogosMarquee />
           <Pillars />
+          <PilatesStrip />
           <Method />
+          <SuccessStory />
           <Pricing />
           <Testimonials />
           <Faq />
@@ -262,6 +268,172 @@ function Page() {
     </div>
   );
 }
+
+/* ───────────────── Reveal (fade-in on scroll) ───────────────── */
+
+function Reveal({
+  as: Tag = "div",
+  delay = 0,
+  className,
+  children,
+  ...rest
+}: {
+  as?: React.ElementType;
+  delay?: number;
+  className?: string;
+  children: React.ReactNode;
+} & React.HTMLAttributes<HTMLElement>) {
+  const ref = useRef<HTMLElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setTimeout(() => setVisible(true), delay);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.18 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [delay]);
+
+  return (
+    <Tag
+      ref={ref as never}
+      data-visible={visible || undefined}
+      className={cn("reveal", className)}
+      {...rest}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+/* ───────────────── Logos marquee ───────────────── */
+
+const LOGOS = [
+  "Maison Lune", "Atelier Vélo", "Café Aldo", "L'Orangerie",
+  "Studio Nord", "Botanic & Co", "Maison Pivoine", "Kura Bordeaux",
+];
+
+function LogosMarquee() {
+  return (
+    <section aria-label="Ils nous font confiance" className="py-10 md:py-14">
+      <div className="container-page">
+        <p className="text-center text-xs uppercase tracking-[0.2em] text-ink-soft">
+          Ils nous font confiance
+        </p>
+        <div className="marquee-mask mt-6 overflow-hidden">
+          <div className="marquee gap-12 md:gap-16 py-4">
+            {[...LOGOS, ...LOGOS].map((name, i) => (
+              <span
+                key={i}
+                className="text-display text-2xl md:text-3xl text-ink-soft/70 hover:text-foreground transition-colors whitespace-nowrap"
+                aria-hidden={i >= LOGOS.length}
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────── Pilates strip (fade-in images) ───────────────── */
+
+function PilatesStrip() {
+  const imgs = [
+    { src: pilates1, alt: "Élève sur reformer en pleine extension, lumière naturelle" },
+    { src: pilates3, alt: "Coach corrigeant la posture d'une élève à genoux" },
+    { src: pilates2, alt: "Pieds nus sur le tapis, instant calme avant la séance" },
+  ];
+  return (
+    <section aria-label="Le studio en images" className="py-12 md:py-20">
+      <div className="container-page grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+        {imgs.map((img, i) => (
+          <Reveal
+            key={i}
+            delay={i * 180}
+            className={cn(
+              "relative overflow-hidden rounded-3xl shadow-soft aspect-[4/5]",
+              i === 1 && "sm:translate-y-6",
+            )}
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              loading="lazy"
+              width={1024}
+              height={1280}
+              className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.04]"
+            />
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────── Success story ───────────────── */
+
+function SuccessStory() {
+  const stats = [
+    { k: "−82%", v: "de douleurs lombaires rapportées après 8 semaines" },
+    { k: "94%", v: "des élèves reviennent le mois suivant" },
+    { k: "+12 cm", v: "de gain moyen en flexion (test bout des doigts)" },
+    { k: "4.9/5", v: "note moyenne sur 230 avis" },
+  ];
+  return (
+    <section className="py-20 md:py-28">
+      <div className="container-page grid lg:grid-cols-12 gap-12 items-center">
+        <Reveal className="lg:col-span-5">
+          <span className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs text-ink-soft">
+            <span className="h-1.5 w-1.5 rounded-full bg-terracotta" />
+            Cas client · Camille, 38 ans
+          </span>
+          <h2 className="text-display mt-6 text-[clamp(2rem,4vw,3rem)] leading-[1.05]">
+            « Je suis venue pour mon dos.{" "}
+            <em className="not-italic text-terracotta" style={{ fontStyle: "italic" }}>
+              Je suis restée pour le reste.
+            </em>{" "}»
+          </h2>
+          <p className="mt-6 text-ink-soft leading-relaxed max-w-lg">
+            Hernie discale, 2 ans d'arrêt sport, peur de bouger. Après 8 semaines
+            (2 séances/sem.), Camille reprend la course — sans douleur. Bilan
+            posture refait tous les 2 mois, programme ajusté à chaque étape.
+          </p>
+        </Reveal>
+
+        <div className="lg:col-span-7 grid grid-cols-2 gap-4 md:gap-6">
+          {stats.map((s, i) => (
+            <Reveal
+              key={s.k}
+              delay={i * 120}
+              className="glass glass-sheen hover-lift rounded-3xl p-6 md:p-8"
+            >
+              <div className="text-display text-4xl md:text-5xl text-terracotta tracking-tight">
+                {s.k}
+              </div>
+              <p className="mt-3 text-sm md:text-base text-ink-soft leading-snug">
+                {s.v}
+              </p>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 /* ───────────────────────── header ───────────────────────── */
 
@@ -385,7 +557,7 @@ function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button asChild size="lg" className="rounded-full px-7 h-12 text-base">
+            <Button asChild size="lg" className="cta-glow text-cream rounded-full px-7 h-12 text-base">
               <a href="#contact">
                 Réserver mon cours d'essai
                 <ArrowRight className="ml-1 h-4 w-4" />
@@ -463,7 +635,7 @@ function Pillars() {
           {PILLARS.map((p) => (
             <article
               key={p.title}
-              className="group relative overflow-hidden rounded-3xl glass p-8 transition-transform hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-3xl glass glass-sheen hover-lift p-8"
             >
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-terracotta/10 text-terracotta">
                 <p.icon className="h-5 w-5" />
@@ -551,10 +723,10 @@ function Pricing() {
             <article
               key={plan.name}
               className={cn(
-                "relative flex flex-col rounded-3xl p-8 transition-transform",
+                "relative flex flex-col rounded-3xl p-8 hover-lift",
                 plan.featured
                   ? "bg-foreground text-background border border-foreground shadow-card md:-translate-y-4"
-                  : "glass",
+                  : "glass glass-sheen",
               )}
             >
               {plan.featured && (
@@ -626,7 +798,7 @@ function Pricing() {
 
 function Testimonials() {
   return (
-    <section id="avis" className="py-20 md:py-28 bg-cream-deep/60">
+    <section id="avis" className="py-20 md:py-28 bg-foreground text-cream relative overflow-hidden">
       <div className="container-page">
         <SectionTitle eyebrow="Ils nous font confiance" title="Des résultats, pas des promesses." />
 
@@ -634,7 +806,7 @@ function Testimonials() {
           {TESTIMONIALS.map((t) => (
             <figure
               key={t.name}
-              className="flex flex-col rounded-3xl glass p-8"
+              className="flex flex-col rounded-3xl glass-dark hover-lift p-8 text-cream"
             >
               <blockquote className="text-display text-xl md:text-[1.35rem] leading-snug flex-1">
                 « {t.quote} »
@@ -650,7 +822,7 @@ function Testimonials() {
                 />
                 <div className="text-sm">
                   <div className="font-medium">{t.name}</div>
-                  <div className="text-ink-soft text-xs">{t.role}</div>
+                  <div className="text-cream/60 text-xs">{t.role}</div>
                 </div>
               </figcaption>
             </figure>
@@ -925,7 +1097,7 @@ function BookingForm() {
           type="submit"
           size="lg"
           disabled={isSubmitting}
-          className="rounded-full px-7 h-12 text-base"
+          className="cta-glow text-cream rounded-full px-7 h-12 text-base"
         >
           {isSubmitting ? "Envoi…" : "Réserver mon cours d'essai"}
           {!isSubmitting && <ArrowRight className="ml-1 h-4 w-4" />}
