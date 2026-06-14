@@ -557,7 +557,6 @@ function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-          <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button asChild size="lg" className="cta-glow text-cream rounded-full px-7 h-12 text-base">
               <a href="#contact">
                 Réserver mon cours d'essai
