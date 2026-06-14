@@ -1097,7 +1097,7 @@ function BookingForm() {
           type="submit"
           size="lg"
           disabled={isSubmitting}
-          className="rounded-full px-7 h-12 text-base"
+          className="cta-glow text-cream rounded-full px-7 h-12 text-base"
         >
           {isSubmitting ? "Envoi…" : "Réserver mon cours d'essai"}
           {!isSubmitting && <ArrowRight className="ml-1 h-4 w-4" />}
