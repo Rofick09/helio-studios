@@ -372,6 +372,7 @@ function PilatesStrip() {
               src={img.src}
               alt={img.alt}
               loading="lazy"
+              decoding="async"
               width={1024}
               height={1280}
               className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.04]"
@@ -594,6 +595,7 @@ function Hero() {
               alt="Élève en posture de Pilates dans le studio Hélio, lumière naturelle douce"
               width={1536}
               height={1280}
+              decoding="async"
               fetchPriority="high"
               className="h-full w-full object-cover"
             />
@@ -607,6 +609,7 @@ function Hero() {
                   src={src}
                   alt=""
                   loading="lazy"
+                  decoding="async"
                   width={64}
                   height={64}
                   className="h-9 w-9 rounded-full object-cover border-2 border-background"
@@ -662,6 +665,7 @@ function Method() {
               src={methodImg}
               alt="Coach corrigeant la posture d'une élève en séance"
               loading="lazy"
+              decoding="async"
               width={1280}
               height={1280}
               className="h-full w-full object-cover"
@@ -816,6 +820,7 @@ function Testimonials() {
                   src={t.img}
                   alt=""
                   loading="lazy"
+                  decoding="async"
                   width={64}
                   height={64}
                   className="h-11 w-11 rounded-full object-cover"
@@ -915,6 +920,7 @@ function ContactCta() {
               src={groupImg}
               alt="Petit groupe en séance de Pilates au Studio Hélio"
               loading="lazy"
+              decoding="async"
               width={1280}
               height={960}
               className="h-full w-full object-cover opacity-90"

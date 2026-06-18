@@ -194,6 +194,7 @@
     position: absolute;
     border-radius: 9999px;
     filter: blur(120px);
+    will-change: transform;
     animation: blob-drift 22s ease-in-out infinite alternate;
   }
   &::before {
@@ -245,6 +246,7 @@
 /* Hover micro-interaction: lift + warm glow */
 @utility hover-lift {
   transition: transform 320ms cubic-bezier(.2,.7,.2,1), box-shadow 320ms ease;
+  will-change: transform, box-shadow;
   &:hover {
     transform: translateY(-6px);
     box-shadow:
@@ -281,6 +283,7 @@
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 800ms ease, transform 800ms cubic-bezier(.2,.7,.2,1);
+  will-change: transform, opacity;
   &[data-visible="true"] {
     opacity: 1;
     transform: none;
